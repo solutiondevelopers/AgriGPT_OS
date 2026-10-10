@@ -49,7 +49,7 @@ export const PRODUCTS: Product[] = [
     supplier: 'BioAgri Tech Corp',
     badge: 'Govt Subsidized 20%',
     inStock: true,
-    imageIcon: '🧪',
+    imageIcon: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=400&h=400&fit=crop&q=80',
     description: 'Enriched slow-release Nitrogen formula designed to boost chlorophyll synthesis in wheat, corn, and commercial crops.',
     specs: { 'Composition': 'N-P-K 28-10-10 + Zinc', 'Application': 'Soil broadcast / fertigation', 'Dosage': '50kg per Hectare' }
   },
@@ -64,7 +64,7 @@ export const PRODUCTS: Product[] = [
     supplier: 'Punjab Agro Seeds',
     badge: 'High Yield certified',
     inStock: true,
-    imageIcon: '🌾',
+    imageIcon: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=400&fit=crop&q=80',
     description: 'Drought-tolerant, yellow-rust resistant certified wheat seeds delivering 22-25 quintals per acre.',
     specs: { 'Germination Rate': '98.5%', 'Maturity': '125-130 Days', 'Purity': '99.9%' }
   },
@@ -79,7 +79,7 @@ export const PRODUCTS: Product[] = [
     supplier: 'AgriGPT Robotics',
     badge: 'AgriGPT Auto-Sync',
     inStock: true,
-    imageIcon: '📡',
+    imageIcon: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&q=80',
     description: 'Solar-powered smart probe tracking real-time NPK levels, moisture %, temperature, and EC values via 4G/LoRaWAN.',
     specs: { 'Battery Life': 'Solar + 3 yr Standby', 'Depth Probes': '10cm, 30cm, 60cm', 'Wireless': 'LoRaWAN + Bluetooth 5' }
   },
@@ -94,7 +94,7 @@ export const PRODUCTS: Product[] = [
     supplier: 'SkyFarmer Systems',
     badge: 'Autonomous Flight',
     inStock: true,
-    imageIcon: '🛸',
+    imageIcon: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=400&h=400&fit=crop&q=80',
     description: '10-liter payload autonomous multi-rotor drone for ultra-low volume liquid fertilizer and pest control spraying.',
     specs: { 'Coverage': '10 Hectares/Hour', 'Flight Time': '22 Mins/Battery', 'Radar': 'Obstacle Avoidance' }
   },
@@ -109,7 +109,7 @@ export const PRODUCTS: Product[] = [
     supplier: 'EcoShield Organics',
     badge: '100% Organic',
     inStock: true,
-    imageIcon: '🌿',
+    imageIcon: 'https://images.unsplash.com/photo-1611735341450-74d61e660ad2?w=400&h=400&fit=crop&q=80',
     description: 'Cold-pressed azadirachtin formulation controls whiteflies, aphids, and mites without chemical residue.',
     specs: { 'Active Ingredient': 'Azadirachtin 10000 PPM', 'Dilution': '5ml per Liter Water', 'Eco Safety': 'Bees & Earthworm Safe' }
   },
@@ -124,7 +124,7 @@ export const PRODUCTS: Product[] = [
     supplier: 'SunPower AgTech',
     badge: 'Zero Electricity Cost',
     inStock: true,
-    imageIcon: '☀️',
+    imageIcon: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=400&fit=crop&q=80',
     description: 'High-head brushless DC solar pump kit with automatic pressure regulation for precision drip irrigation.',
     specs: { 'Flow Rate': '12,000 L/Hour', 'Solar Panel': '1200W Mono-PERC', 'Warranty': '5 Years' }
   }
@@ -297,8 +297,13 @@ export function AgroStore() {
               <div>
                 {/* Product Header & Badge */}
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center text-2xl shadow-inner">
-                    {product.imageIcon}
+                  <div className="w-16 h-16 rounded-xl overflow-hidden border border-zinc-200 shadow-sm flex-shrink-0 bg-zinc-100">
+                    <img
+                      src={product.imageIcon}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop&q=80'; }}
+                    />
                   </div>
                   {product.badge && (
                     <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
@@ -404,8 +409,13 @@ export function AgroStore() {
               </button>
 
               <div className="flex items-center gap-3">
-                <div className="w-14 h-14 rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center text-3xl">
-                  {selectedProduct.imageIcon}
+                <div className="w-20 h-20 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm flex-shrink-0 bg-zinc-100">
+                  <img
+                    src={selectedProduct.imageIcon}
+                    alt={selectedProduct.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop&q=80'; }}
+                  />
                 </div>
                 <div>
                   <div className="text-xs font-bold text-emerald-700">{selectedProduct.category}</div>
